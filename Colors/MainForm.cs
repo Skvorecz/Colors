@@ -35,20 +35,15 @@ namespace Colors
             if (leftColor.ToArgb() == Color.Black.ToArgb())
                 return;
 
-            int x = - colorCircle.Center.X + e.X;
-            int y = colorCircle.Center.Y - e.Y;
+            int x = e.X - colorCircle.Center.X;
+            int y = e.Y - colorCircle.Center.Y;
             double a = Math.Atan2(x, y);
 
             x = (int)(colorCircle.Radius * Math.Sin(a));
             y = (int)(colorCircle.Radius * Math.Cos(a));
 
             x = x + colorCircle.Center.X + colorCircle.Location.X;
-            y = - y + colorCircle.Center.Y + colorCircle.Location.Y;
-
-
-            //mouse coordinates in Form
-            //x = e.X + colorCircle.Location.X;
-            //y = e.Y + colorCircle.Location.Y;
+            y = y + colorCircle.Center.Y + colorCircle.Location.Y;
 
             if (ayaya == null)
             {
@@ -58,7 +53,10 @@ namespace Colors
             ayaya.Location = new Point(x, y);
             ayaya.BringToFront();
 
-            
+            leftColor = GetPixelColor(colorCircle, ayaya.Location.X - colorCircle.Location.X, ayaya.Location.Y - colorCircle.Location.Y);
+
+            if (leftColor.ToArgb() == Color.Black.ToArgb())
+                return;
 
             if (oppositeAYAYA == null)
             {

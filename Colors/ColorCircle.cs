@@ -25,13 +25,5 @@ namespace Colors
         {
             Location = new Point(x, y);
         }
-
-        //protected override void OnPaint(PaintEventArgs pe)
-        //{
-        //    GraphicsPath path = new GraphicsPath();
-        //    path.AddEllipse(0, 0, Image.Width, Image.Height);
-        //    this.Region = new Region(path);
-        //    base.OnPaint(pe);
-        //}
     }
 }
