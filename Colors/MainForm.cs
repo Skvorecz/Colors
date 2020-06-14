@@ -55,9 +55,6 @@ namespace Colors
 
             leftColor = GetPixelColor(colorCircle, ayaya.Location.X - colorCircle.Location.X, ayaya.Location.Y - colorCircle.Location.Y);
 
-            if (leftColor.ToArgb() == Color.Black.ToArgb())
-                return;
-
             if (oppositeAYAYA == null)
             {
                 oppositeAYAYA = new AYAYA();
