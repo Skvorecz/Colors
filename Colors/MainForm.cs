@@ -12,17 +12,9 @@ namespace Colors
 {
     public partial class MainForm : Form
     {
-        Scheme scheme; //
-
+        Scheme scheme;
         ColorCircle colorCircle;
-        Pointer pointer;
-        Pointer oppositePointer;
-
         Pointer[] pointers = new Pointer[2];
-
-        Color rightColor;
-        Color leftColor;
-
         Color[] colors = new Color[2];
 
         public MainForm()
@@ -31,7 +23,7 @@ namespace Colors
             colorCircle.MouseDown += ColorCircle_MouseDown;
             Controls.Add(colorCircle);
 
-            scheme = new Complementary(colorCircle); //
+            scheme = new Complementary(colorCircle);
 
             InitializeComponent();
         }
