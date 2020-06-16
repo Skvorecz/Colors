@@ -12,6 +12,8 @@ namespace Colors
 {
     public partial class MainForm : Form
     {
+        Scheme scheme; //
+
         ColorCircle colorCircle;
         Pointer pointer;
         Pointer oppositePointer;
@@ -19,19 +21,22 @@ namespace Colors
         Color rightColor;
         Color leftColor;
 
+        Color[] colors;
+
         public MainForm()
         {
             colorCircle = new ColorCircle(125, 125);
             colorCircle.MouseDown += ColorCircle_MouseDown;
             Controls.Add(colorCircle);
 
+            scheme = new Complementary(colorCircle); //
+
             InitializeComponent();
         }
 
         private void ColorCircle_MouseDown(object sender, MouseEventArgs e)
         {
-            leftColor = GetPixelColor(colorCircle, e.X, e.Y);
-
+            //Находим точку, ближайшую к центральной окружности
             int x = e.X - colorCircle.Center.X;
             int y = e.Y - colorCircle.Center.Y;
             double a = Math.Atan2(x, y);
@@ -39,27 +44,30 @@ namespace Colors
             x = (int)(colorCircle.Radius * Math.Sin(a));
             y = (int)(colorCircle.Radius * Math.Cos(a));
 
-            x = x + colorCircle.Center.X + colorCircle.Location.X;
-            y = y + colorCircle.Center.Y + colorCircle.Location.Y;
+            x = x + colorCircle.Center.X;
+            y = y + colorCircle.Center.Y;
+
+            Point[] points = scheme.PointersPositions(new Point(x, y));
+
+            
 
             if (pointer == null)
             {
                 pointer = new Pointer();
                 Controls.Add(pointer);
             }
-            pointer.Location = new Point(x, y);
-            pointer.BringToFront();
-
-            leftColor = GetPixelColor(colorCircle, pointer.Location.X - colorCircle.Location.X, pointer.Location.Y - colorCircle.Location.Y);
+            pointer.Location = new Point(points[0].X + colorCircle.Location.X, points[0].Y + colorCircle.Location.Y);
+            pointer.BringToFront();            
 
             if (oppositePointer == null)
             {
                 oppositePointer = new Pointer();
                 Controls.Add(oppositePointer);
-            }            
-            oppositePointer.Location = new Point(colorCircle.Location.X + colorCircle.Width - pointer.Location.X + colorCircle.Center.X, colorCircle.Location.Y + colorCircle.Height - pointer.Location.Y + colorCircle.Center.Y);
+            }
+            oppositePointer.Location = new Point(points[1].X + colorCircle.Location.X, points[1].Y + colorCircle.Location.Y);
             oppositePointer.BringToFront();
 
+            leftColor = GetPixelColor(colorCircle, pointer.Location.X - colorCircle.Location.X, pointer.Location.Y - colorCircle.Location.Y);
             rightColor = GetPixelColor(colorCircle, oppositePointer.Location.X - colorCircle.Location.X, oppositePointer.Location.Y - colorCircle.Location.Y);
             
             Refresh();
@@ -72,7 +80,6 @@ namespace Colors
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            Scheme scheme = new Complementary();
             scheme.Paint(e, this, leftColor, rightColor);
         }
     }

@@ -11,8 +11,18 @@ namespace Colors
 {
     class ColorCircle : PictureBox
     {
-        public int Radius { get; } = 94;
-        public Point Center { get; } = new Point(121, 122);
+        private Point center = new Point();
+
+        public int Radius { get { return (int)(this.Width / 2.57); } }
+        public Point Center
+        {
+            get
+            {
+                center.X = this.Width / 2;
+                center.Y = this.Height / 2;
+                return center;
+            }
+        }
 
         public ColorCircle()
         {

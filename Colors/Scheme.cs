@@ -3,8 +3,16 @@ using System.Drawing;
 
 namespace Colors
 {
-    interface Scheme
+    abstract class Scheme
     {
-        void Paint(PaintEventArgs e, Form form, params Color[] colors);
+        protected ColorCircle colorCircle;
+
+        public abstract void Paint(PaintEventArgs e, Form form, params Color[] colors);
+        public abstract Point[] PointersPositions(Point basePoint);
+
+        public Scheme(ColorCircle colorCircle)
+        {
+            this.colorCircle = colorCircle;
+        }
     }
 }
