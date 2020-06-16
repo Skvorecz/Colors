@@ -33,10 +33,10 @@ namespace Colors
             //Находим точку, ближайшую к центральной окружности
             int x = e.X - colorCircle.Center.X;
             int y = e.Y - colorCircle.Center.Y;
-            double a = Math.Atan2(x, y);
+            double angle = Math.Atan2(x, y);
 
-            x = (int)(colorCircle.Radius * Math.Sin(a));
-            y = (int)(colorCircle.Radius * Math.Cos(a));
+            x = (int)(colorCircle.Radius * Math.Sin(angle));
+            y = (int)(colorCircle.Radius * Math.Cos(angle));
 
             x = x + colorCircle.Center.X;
             y = y + colorCircle.Center.Y;
