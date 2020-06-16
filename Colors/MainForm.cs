@@ -13,8 +13,8 @@ namespace Colors
     public partial class MainForm : Form
     {
         ColorCircle colorCircle;
-        AYAYA ayaya;
-        AYAYA oppositeAYAYA;
+        Pointer pointer;
+        Pointer oppositePointer;
 
         Color rightColor;
         Color leftColor;
@@ -32,9 +32,6 @@ namespace Colors
         {
             leftColor = GetPixelColor(colorCircle, e.X, e.Y);
 
-            if (leftColor.ToArgb() == Color.Black.ToArgb())
-                return;
-
             int x = e.X - colorCircle.Center.X;
             int y = e.Y - colorCircle.Center.Y;
             double a = Math.Atan2(x, y);
@@ -45,25 +42,25 @@ namespace Colors
             x = x + colorCircle.Center.X + colorCircle.Location.X;
             y = y + colorCircle.Center.Y + colorCircle.Location.Y;
 
-            if (ayaya == null)
+            if (pointer == null)
             {
-                ayaya = new AYAYA();
-                Controls.Add(ayaya);
+                pointer = new Pointer();
+                Controls.Add(pointer);
             }
-            ayaya.Location = new Point(x, y);
-            ayaya.BringToFront();
+            pointer.Location = new Point(x, y);
+            pointer.BringToFront();
 
-            leftColor = GetPixelColor(colorCircle, ayaya.Location.X - colorCircle.Location.X, ayaya.Location.Y - colorCircle.Location.Y);
+            leftColor = GetPixelColor(colorCircle, pointer.Location.X - colorCircle.Location.X, pointer.Location.Y - colorCircle.Location.Y);
 
-            if (oppositeAYAYA == null)
+            if (oppositePointer == null)
             {
-                oppositeAYAYA = new AYAYA();
-                Controls.Add(oppositeAYAYA);
+                oppositePointer = new Pointer();
+                Controls.Add(oppositePointer);
             }            
-            oppositeAYAYA.Location = new Point(colorCircle.Location.X + colorCircle.Width - ayaya.Location.X + colorCircle.Center.X, colorCircle.Location.Y + colorCircle.Height - ayaya.Location.Y + colorCircle.Center.Y);
-            oppositeAYAYA.BringToFront();
+            oppositePointer.Location = new Point(colorCircle.Location.X + colorCircle.Width - pointer.Location.X + colorCircle.Center.X, colorCircle.Location.Y + colorCircle.Height - pointer.Location.Y + colorCircle.Center.Y);
+            oppositePointer.BringToFront();
 
-            rightColor = GetPixelColor(colorCircle, oppositeAYAYA.Location.X - colorCircle.Location.X, oppositeAYAYA.Location.Y - colorCircle.Location.Y);
+            rightColor = GetPixelColor(colorCircle, oppositePointer.Location.X - colorCircle.Location.X, oppositePointer.Location.Y - colorCircle.Location.Y);
             
             Refresh();
         }
@@ -75,9 +72,6 @@ namespace Colors
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            //e.Graphics.DrawRectangle(new Pen(leftColor, this.Height / 3), 0, 0, this.Width / 3, this.Height);
-            //e.Graphics.DrawRectangle(new Pen(rightColor, this.Height / 3), 300, 0, this.Width / 3, this.Height);
-
             e.Graphics.FillRectangle(new SolidBrush(leftColor), 0, 0, this.Width / 2, this.Height);
             e.Graphics.FillRectangle(new SolidBrush(rightColor), this.Width / 2, 0, this.Width / 2, this.Height);
         }

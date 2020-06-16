@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace Colors
 {
-    class AYAYA : PictureBox
+    class Pointer : PictureBox
     {
-        public AYAYA ()
+        public Pointer ()
         {            
             Image = Properties.Resources.AYAYA;
             SizeMode = PictureBoxSizeMode.StretchImage;
