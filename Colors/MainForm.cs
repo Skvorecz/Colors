@@ -72,8 +72,8 @@ namespace Colors
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(new SolidBrush(leftColor), 0, 0, this.Width / 2, this.Height);
-            e.Graphics.FillRectangle(new SolidBrush(rightColor), this.Width / 2, 0, this.Width / 2, this.Height);
+            Scheme scheme = new Complementary();
+            scheme.Paint(e, this, leftColor, rightColor);
         }
     }
 }
