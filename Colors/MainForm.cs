@@ -18,10 +18,12 @@ namespace Colors
         Pointer pointer;
         Pointer oppositePointer;
 
+        Pointer[] pointers = new Pointer[2];
+
         Color rightColor;
         Color leftColor;
 
-        Color[] colors;
+        Color[] colors = new Color[2];
 
         public MainForm()
         {
@@ -49,27 +51,19 @@ namespace Colors
 
             Point[] points = scheme.PointersPositions(new Point(x, y));
 
-            
-
-            if (pointer == null)
+            for (int i = 0; i < points.Length; i++)
             {
-                pointer = new Pointer();
-                Controls.Add(pointer);
-            }
-            pointer.Location = new Point(points[0].X + colorCircle.Location.X, points[0].Y + colorCircle.Location.Y);
-            pointer.BringToFront();            
+                if(pointers[i] == null)
+                {
+                    pointers[i] = new Pointer();
+                    Controls.Add(pointers[i]);
+                }
+                pointers[i].Location = new Point(points[i].X + colorCircle.Location.X, points[i].Y + colorCircle.Location.Y);
+                pointers[i].BringToFront();
 
-            if (oppositePointer == null)
-            {
-                oppositePointer = new Pointer();
-                Controls.Add(oppositePointer);
+                colors[i] = GetPixelColor(colorCircle, pointers[i].Location.X - colorCircle.Location.X, pointers[i].Location.Y - colorCircle.Location.Y);
             }
-            oppositePointer.Location = new Point(points[1].X + colorCircle.Location.X, points[1].Y + colorCircle.Location.Y);
-            oppositePointer.BringToFront();
 
-            leftColor = GetPixelColor(colorCircle, pointer.Location.X - colorCircle.Location.X, pointer.Location.Y - colorCircle.Location.Y);
-            rightColor = GetPixelColor(colorCircle, oppositePointer.Location.X - colorCircle.Location.X, oppositePointer.Location.Y - colorCircle.Location.Y);
-            
             Refresh();
         }
 
@@ -80,7 +74,7 @@ namespace Colors
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            scheme.Paint(e, this, leftColor, rightColor);
+            scheme.Paint(e, this, colors);
         }
     }
 }
