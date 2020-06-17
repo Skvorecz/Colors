@@ -28,13 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.schemeComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+            // 
+            // schemeComboBox
+            // 
+            this.schemeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.schemeComboBox.FormattingEnabled = true;
+            this.schemeComboBox.Items.AddRange(new object[] {
+            "Complementary",
+            "Analogous",
+            "Triad"});
+            this.schemeComboBox.Location = new System.Drawing.Point(13, 13);
+            this.schemeComboBox.Name = "schemeComboBox";
+            this.schemeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.schemeComboBox.TabIndex = 0;
+            this.schemeComboBox.SelectedIndexChanged += new System.EventHandler(this.schemeComboBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.schemeComboBox);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
@@ -43,6 +59,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ComboBox schemeComboBox;
     }
 }
 

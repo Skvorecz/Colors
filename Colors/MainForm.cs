@@ -14,8 +14,8 @@ namespace Colors
     {
         Scheme scheme;
         ColorCircle colorCircle;
-        Pointer[] pointers = new Pointer[3];
-        Color[] colors = new Color[3];
+        Pointer[] pointers;
+        Color[] colors;
 
         public MainForm()
         {
@@ -23,9 +23,9 @@ namespace Colors
             colorCircle.MouseDown += ColorCircle_MouseDown;
             Controls.Add(colorCircle);
 
-            scheme = new Triad(colorCircle);
-
             InitializeComponent();
+
+            schemeComboBox.SelectedIndex = 0;
         }
 
         private void ColorCircle_MouseDown(object sender, MouseEventArgs e)
@@ -67,6 +67,34 @@ namespace Colors
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             scheme.Paint(e, this, colors);
+        }
+
+        private void schemeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pointers != null)
+                foreach (Pointer p in pointers)
+                    Controls.Remove(p);
+
+            switch (schemeComboBox.SelectedItem.ToString())
+            {
+                case "Complementary":
+                    scheme = new Complementary(colorCircle);
+                    pointers = new Pointer[2];
+                    colors = new Color[2];
+                    break;
+
+                case "Analogous":
+                    scheme = new Analogous(colorCircle);
+                    pointers = new Pointer[2];
+                    colors = new Color[2];
+                    break;
+
+                case "Triad":
+                    scheme = new Triad(colorCircle);
+                    pointers = new Pointer[3];
+                    colors = new Color[3];
+                    break;
+            }
         }
     }
 }
