@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Colors
@@ -50,10 +44,10 @@ namespace Colors
                     pointers[i] = new Pointer();
                     Controls.Add(pointers[i]);
                 }
-                pointers[i].Location = new Point(points[i].X + colorCircle.Location.X, points[i].Y + colorCircle.Location.Y);
+                pointers[i].Location = new Point(points[i].X + colorCircle.Location.X - (pointers[i].Width / 2), points[i].Y + colorCircle.Location.Y - (pointers[i].Height / 2));
                 pointers[i].BringToFront();
 
-                colors[i] = GetPixelColor(colorCircle, pointers[i].Location.X - colorCircle.Location.X, pointers[i].Location.Y - colorCircle.Location.Y);
+                colors[i] = GetPixelColor(colorCircle, pointers[i].Location.X - colorCircle.Location.X + (pointers[i].Width / 2), pointers[i].Location.Y - colorCircle.Location.Y + (pointers[i].Height / 2));
             }
 
             Refresh();

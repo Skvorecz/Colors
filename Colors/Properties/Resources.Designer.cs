@@ -63,9 +63,9 @@ namespace Colors.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AYAYA {
+        internal static System.Drawing.Bitmap blackdot {
             get {
-                object obj = ResourceManager.GetObject("AYAYA", resourceCulture);
+                object obj = ResourceManager.GetObject("blackdot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

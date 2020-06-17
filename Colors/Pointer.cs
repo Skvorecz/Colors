@@ -11,9 +11,9 @@ namespace Colors
     {
         public Pointer ()
         {            
-            Image = Properties.Resources.AYAYA;
+            Image = Properties.Resources.blackdot;
             SizeMode = PictureBoxSizeMode.StretchImage;
-            Size = new System.Drawing.Size(25, 25);
+            Size = new System.Drawing.Size(10, 10);
         }
     }
 }
