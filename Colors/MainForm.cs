@@ -14,8 +14,8 @@ namespace Colors
     {
         Scheme scheme;
         ColorCircle colorCircle;
-        Pointer[] pointers = new Pointer[2];
-        Color[] colors = new Color[2];
+        Pointer[] pointers = new Pointer[3];
+        Color[] colors = new Color[3];
 
         public MainForm()
         {
@@ -23,7 +23,7 @@ namespace Colors
             colorCircle.MouseDown += ColorCircle_MouseDown;
             Controls.Add(colorCircle);
 
-            scheme = new Analogous(colorCircle);
+            scheme = new Triad(colorCircle);
 
             InitializeComponent();
         }
