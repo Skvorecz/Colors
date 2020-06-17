@@ -90,5 +90,16 @@ namespace Colors
                     break;
             }
         }
+
+        private void resultButton_Click(object sender, EventArgs e)
+        {
+            if (colors[0] == Color.Empty)
+                return;
+
+            string message = "";
+            foreach (Color c in colors)
+                message += $"R={c.R}, G={c.G}, B={c.B}\n";
+            MessageBox.Show(message, "Colors!");
+        }
     }
 }
