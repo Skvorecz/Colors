@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analogous.cs" />
     <Compile Include="Complementary.cs" />
     <Compile Include="Pointer.cs">
       <SubType>Component</SubType>

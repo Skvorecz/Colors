@@ -23,7 +23,7 @@ namespace Colors
             colorCircle.MouseDown += ColorCircle_MouseDown;
             Controls.Add(colorCircle);
 
-            scheme = new Complementary(colorCircle);
+            scheme = new Analogous(colorCircle);
 
             InitializeComponent();
         }
